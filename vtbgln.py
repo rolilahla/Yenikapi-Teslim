@@ -3,10 +3,11 @@
 # sys.path.append(r'/home/istihza/programlar') komutu ile bu modülü python yoluna ekleyebilirsin
 
 import sqlite3
+import os
 
 class VbagKur(object):
     def __init__(self):
-        dvyol = "C:/Users/INTERTEK/PycharmProjects/İntertek Teslimat/lib/db/vice.sqlite"
+        dvyol = os.getcwd()+ "/lib/db/vice.sqlite"
         self.vt = sqlite3.connect(dvyol)
         self.im = self.vt.cursor()
 
