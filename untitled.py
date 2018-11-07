@@ -457,13 +457,10 @@ class Ui_MainWindow(object):
         self.comboBox_5.setItemText(0, _translate("MainWindow", "AÇIK"))
         self.comboBox_5.setItemText(1, _translate("MainWindow", "KREDİ KARTI"))
         self.label_6.setText(_translate("MainWindow", "Teslimatçı"))
-        self.comboBox_6.setItemText(0, _translate("MainWindow", "BURAK BİRDİR"))
-        self.comboBox_6.setItemText(1, _translate("MainWindow", "MEHMET EROĞLU"))
-        self.comboBox_6.setItemText(2, _translate("MainWindow", "TAYLAN KURT"))
+
         self.label_28.setText(_translate("MainWindow", "Yakıt Alan Kişi"))
         self.label_7.setText(_translate("MainWindow", "Gemici"))
-        self.comboBox_7.setItemText(0, _translate("MainWindow", "OSMAN YILMAZ"))
-        self.comboBox_7.setItemText(1, _translate("MainWindow", "KÖKSAL ALBAR"))
+
         self.label_11.setText(_translate("MainWindow", "Bölge"))
         self.label_29.setText(_translate("MainWindow", "Başlama Saati"))
         self.label_30.setText(_translate("MainWindow", "Bitiş Saati"))

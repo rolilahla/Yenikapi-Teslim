@@ -103,13 +103,12 @@ class MainWindow(QMainWindow,  Ui_MainWindow):
 			barge_numune_muhur = self.ui.lineEdit_12.text()
 			gemi_numune_muhur = self.ui.lineEdit_13.text()
 
-
 		mesaj = gemi + " gemisine ait " + net_litre + \
 				" litrelik teslimat bilgisi veritabanına eklendi. Teslimat dosyaları oluşturuluyor"
 		uyari(mesaj, "Bilgilendirme")
 
-		zoro.teslimat_hazirliği_yap(danisman ,musteri_kodu ,gemi, yakit_turu, yogunluk,
-				   brut_litre, sicaklik , volum_correction, net_litre, kilogram,
+		zoro.teslimat_hazirliği_yap(danisman, musteri_kodu, gemi, yakit_turu, yogunluk,
+				   brut_litre, sicaklik, volum_correction, net_litre, kilogram,
 				   irsaliye_no, odeme_turu, teslimatci, yakit_alan_kisi, gemici,
 				   bolge, yer,
 				   baslama_saati, bitis_saati, sarfiyat, barge_numune_muhur, gemi_numune_muhur)
@@ -121,7 +120,6 @@ class MainWindow(QMainWindow,  Ui_MainWindow):
 				self.ui.tetikle_kart()
 			else:
 				pass
-
 
 		self.ui.lineEdit.clear()
 		self.ui.comboBox_2.clear()
@@ -180,11 +178,8 @@ class MainWindow(QMainWindow,  Ui_MainWindow):
 		for i in range(len(yakit_kilo)):
 			toplam_kilo += yakit_kilo[i]
 
-
 		print("Toplam litre ", toplam_litre)
 		print("Toplam Kilogram", toplam_kilo)
-
-
 
 	def triggerfinger(self):
 		self.ui.lineEdit.returnPressed.connect(self.tgemi)
@@ -193,7 +188,6 @@ class MainWindow(QMainWindow,  Ui_MainWindow):
 		self.ui.lineEdit_5.textChanged.connect(self.muhur_sina)
 		self.ui.comboBox_8.currentIndexChanged.connect(self.yer_bul)
 		self.ui.pushButton.clicked.connect(self.olustur)
-
 
 
 app = QApplication(sys.argv)
