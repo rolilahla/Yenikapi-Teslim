@@ -21,29 +21,54 @@ def yogunluk_listele(arg):
     return yaz.veri_duzenle(yaz.hepsini_oku("kesafet", "densitys", "tur", arg))
 
 def v_c_f(density, brut, sicaklik):
-    sonuc_liste = []
-    deger = (float(density) * 2000) / 2
-    if int(deger) >= 839 & int(deger) <= 1075:
-        sonuc = 186.9696 / (math.pow(deger, 2)) + 0.4862 / deger
-    elif int(deger) >= 788 & (deger) <= 838.5:
-        sonuc = 594.5418 / (math.pow(deger, 2))
-    elif int(deger) >= 770.5 & int(deger) <= 787.5:
-        sonuc = 2680.3206 / (math.pow(deger, 2)) - 0.00336312
-    elif int(deger) >= 653 & int(deger) <= 770:
-        sonuc = ((346.4228 / (math.pow(deger, 2)) + 0.4388 / deger) * math.pow(10, 7) + 0.5) / math.pow(10, 7)
-    else:
-        print("Bu işte bir yanlışlık var")
+    if len(brut) == 3:
+        sonuc_liste = []
+        deger = (float(density) * 2000) / 2
+        if int(deger) >= 839 & int(deger) <= 1075:
+            sonuc = 186.9696 / (math.pow(deger, 2)) + 0.4862 / deger
+        elif int(deger) >= 788 & (deger) <= 838.5:
+            sonuc = 594.5418 / (math.pow(deger, 2))
+        elif int(deger) >= 770.5 & int(deger) <= 787.5:
+            sonuc = 2680.3206 / (math.pow(deger, 2)) - 0.00336312
+        elif int(deger) >= 653 & int(deger) <= 770:
+            sonuc = ((346.4228 / (math.pow(deger, 2)) + 0.4388 / deger) * math.pow(10, 7) + 0.5) / math.pow(10, 7)
+        else:
+            print("Bu işte bir yanlışlık var")
 
-    a = sonuc - (2 * sonuc)
-    b = a * (float(sicaklik) - 15) * (1 + 0.8 * a * (float(sicaklik) - 15))
-    t54 = math.pow(math.e, b)
-    t54d = format(t54, '.4f')
-    net_litre = float(brut) * float(t54d)
-    kilogram = net_litre * (float(density) - 0.0011)
-    sonuc_liste.append(str(t54d))
-    sonuc_liste.append(str(format(net_litre, '.3f')))
-    sonuc_liste.append(str(format(kilogram, '.3f')))
-    return sonuc_liste
+        a = sonuc - (2 * sonuc)
+        b = a * (float(sicaklik) - 15) * (1 + 0.8 * a * (float(sicaklik) - 15))
+        t54 = math.pow(math.e, b)
+        t54d = format(t54, '.4f')
+        net_litre = float(brut) * float(t54d)
+        kilogram = net_litre * (float(density) - 0.0011)
+        sonuc_liste.append(str(t54d))
+        sonuc_liste.append(str(round(net_litre)))
+        sonuc_liste.append(str(round(kilogram)))
+        return sonuc_liste
+    else:
+        sonuc_liste = []
+        deger = (float(density) * 2000) / 2
+        if int(deger) >= 839 & int(deger) <= 1075:
+            sonuc = 186.9696 / (math.pow(deger, 2)) + 0.4862 / deger
+        elif int(deger) >= 788 & (deger) <= 838.5:
+            sonuc = 594.5418 / (math.pow(deger, 2))
+        elif int(deger) >= 770.5 & int(deger) <= 787.5:
+            sonuc = 2680.3206 / (math.pow(deger, 2)) - 0.00336312
+        elif int(deger) >= 653 & int(deger) <= 770:
+            sonuc = ((346.4228 / (math.pow(deger, 2)) + 0.4388 / deger) * math.pow(10, 7) + 0.5) / math.pow(10, 7)
+        else:
+            print("Bu işte bir yanlışlık var")
+
+        a = sonuc - (2 * sonuc)
+        b = a * (float(sicaklik) - 15) * (1 + 0.8 * a * (float(sicaklik) - 15))
+        t54 = math.pow(math.e, b)
+        t54d = format(t54, '.4f')
+        net_litre = float(brut) * float(t54d)
+        kilogram = net_litre * (float(density) - 0.0011)
+        sonuc_liste.append(str(t54d))
+        sonuc_liste.append(str(format(net_litre, '.3f')))
+        sonuc_liste.append(str(format(kilogram, '.3f')))
+        return sonuc_liste
 
 
 def bolge_hazirla():
@@ -128,7 +153,8 @@ def teslimat_hazirliği_yap(danisman ,musteri_kodu ,gemi, yakit_turu, yogunluk,
 def irsaliye_yaz(kod, must, adres, vergi_dairesi, vergi_no, tar,urun_kodu,
                  urun_infor, urun, dens, litre, kg, yer_kodu, bolge, belge_no,
                  veren, alan, gemi, gemi_kodu, sicil, cins, defter_no, muhur):
-    gem = gemi + " " + tar
+    gemlover = gemi + " " + tar
+    gem = gemlover.lower()
     ana_dizin = os.getcwd()
     irsaliye_yolu = "\\lib\\usefile\\irsaliye.xlsx"
     hedef_dizin = "C:\\viçe\\evraklar\\"
@@ -164,7 +190,8 @@ def irsaliye_yaz(kod, must, adres, vergi_dairesi, vergi_no, tar,urun_kodu,
 
 def ek_bir_yaz(gad, gcins, imo, firma, ceng, teslimatci, adres, ftel, acente, actel, mevki, basaat, bisaat,
                yakit, litre, kg, gemici):
-    gem = "Opet Ek-1 " + gad + " " + tar
+    gemlover = "Opet Ek-1 " + gad.lower() + " " + tar
+    gem = gemlover.lower()
     ana_dizin = os.getcwd()
     irsaliye_yolu = "\\lib\\usefile\\ekbir.xlsx"
     hedef_dizin = "C:\\viçe\\evraklar\\"
@@ -193,7 +220,8 @@ def ek_bir_yaz(gad, gcins, imo, firma, ceng, teslimatci, adres, ftel, acente, ac
     sht.range('M17').value = gemici
 
 def check_list_yaz(teslimatci, gemi, defter_no, belge_no):
-    gem = "Check List " + gemi
+    gemlover = "Check List " + gemi
+    gem = gemlover.lower()
     ana_dizin = os.getcwd()
     irsaliye_yolu = "\\lib\\usefile\\checklist.xlsx"
     hedef_dizin = "C:\\viçe\\evraklar\\"
