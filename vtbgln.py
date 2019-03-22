@@ -122,12 +122,13 @@ class VbagKur(object):
             '{}', 0, 0,{})""".format(tarih, tur, lt, kg, kesafet, beyan))
         self.vt.commit()
 
-    def yogunluk_gun(self, tarih, tur, lt, kg, yog, id_no):
+    def yogunluk_gun(self, tarih, tur, lt, kg, yog, id_no, beyanno):
         self.im.execute("""UPDATE densitys SET tarih = '{}',
         tur = '{}',
         litre = '{}',
         kg = '{}',
-         kesafet = '{}' WHERE id = '{}'""".format(tarih, tur, lt, kg, yog, id_no))
+         kesafet = '{}',
+          beyanno = '{}' WHERE id = '{}'""".format(tarih, tur, lt, kg, yog, beyanno, id_no))
         self.vt.commit()
 
     """
@@ -185,6 +186,14 @@ class VbagKur(object):
     def urun_stok_tablo(self):
         self.im.execute("select tarih, tur, litre,kg,kesafet, satılan_litre, satılan_kg from densitys")
         return self.im.fetchall()
+
+    def komut(self, sql):
+        self.im.execute(sql)
+        return self.im.fetchone()
+
+    def isle(self, sql):
+        self.im.execute(sql)
+        self.vt.commit()
 
 
     def veritabanini_kapat(self):

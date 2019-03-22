@@ -9,14 +9,10 @@ from gemiekle import Ui_GemiEkle
 from fg import Ui_Fg
 from gemisil import Ui_GemiSil
 
-from yogunlukguncelle import Ui_YogunlukGuncelle
-from personekle import Ui_PersonelEkle
-from personelsil import Ui_PersonelSil
-from bolgeekle import Ui_BolgeEkle
-from bolgesil import Ui_BolgeYerSil
-from yerekle import Ui_YerEkle
+
+
 from karttutanak import Ui_KrediKari
-from urunekle import Ui_UrunEkle
+
 
 """
     Teslimat ui dosyasını signal slot bağlantıları
@@ -45,14 +41,6 @@ def Fguncelle(self):
     ui.setupUi(Firmaguncelle)
     Firmaguncelle.show()
     Firmaguncelle.exec_()
-
-
-def Uekle(self):
-    UrunEkle = QtWidgets.QDialog()
-    ui = Ui_UrunEkle()
-    ui.setupUi(UrunEkle)
-    UrunEkle.show()
-    UrunEkle.exec_()
 
 def Folustur(self):
     Firmaolustur = QtWidgets.QDialog()
@@ -89,47 +77,10 @@ def Gsil(self):
     GemiSil.show()
     GemiSil.exec_()
 
-def Ygun():
-    YogunlukGuncelle = QtWidgets.QDialog()
-    ui = Ui_YogunlukGuncelle()
-    ui.setupUi(YogunlukGuncelle)
-    YogunlukGuncelle.show()
-    YogunlukGuncelle.exec_()
 
-def Perekle():
-    PersonelEkle = QtWidgets.QDialog()
-    ui = Ui_PersonelEkle()
-    ui.setupUi(PersonelEkle)
-    PersonelEkle.show()
-    PersonelEkle.exec_()
 
-def Persil():
-    PersonelSil = QtWidgets.QDialog()
-    ui = Ui_PersonelSil()
-    ui.setupUi(PersonelSil)
-    PersonelSil.show()
-    PersonelSil.exec_()
 
-def bolekle():
-    BolgeEkle = QtWidgets.QDialog()
-    ui = Ui_BolgeEkle()
-    ui.setupUi(BolgeEkle)
-    BolgeEkle.show()
-    BolgeEkle.exec()
 
-def yerek():
-    YerEkle = QtWidgets.QDialog()
-    ui = Ui_YerEkle()
-    ui.setupUi(YerEkle)
-    YerEkle.show()
-    YerEkle.exec()
-
-def bysil():
-    BolgeYerSil = QtWidgets.QDialog()
-    ui = Ui_BolgeYerSil()
-    ui.setupUi(BolgeYerSil)
-    BolgeYerSil.show()
-    BolgeYerSil.exec()
 
 def Kartut():
     KrediKari = QtWidgets.QDialog()

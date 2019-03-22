@@ -10,34 +10,37 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from vtbgln import VbagKur
 import mesajlar as mes
 
-class Ui_PersonelSil(object):
+class Ui_PersonelSil(QtWidgets.QDialog):
+    signal = QtCore.pyqtSignal(int)
     def __init__(self):
+        super(Ui_PersonelSil, self).__init__()
         self.yaz = VbagKur()
+        self.setupUi()
 
-    def setupUi(self, PersonelSil):
-        PersonelSil.setObjectName("PersonelSil")
-        PersonelSil.resize(452, 197)
+    def setupUi(self):
+        self.setObjectName("PersonelSil")
+        self.resize(452, 197)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/rolix/dialog-error.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        PersonelSil.setWindowIcon(icon)
-        self.label = QtWidgets.QLabel(PersonelSil)
+        self.setWindowIcon(icon)
+        self.label = QtWidgets.QLabel(self)
         self.label.setGeometry(QtCore.QRect(10, 10, 121, 121))
         self.label.setText("")
         self.label.setPixmap(QtGui.QPixmap(":/rolix/dialog-error.png"))
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
-        self.listWidget = QtWidgets.QListWidget(PersonelSil)
+        self.listWidget = QtWidgets.QListWidget(self)
         self.listWidget.setGeometry(QtCore.QRect(120, 10, 311, 141))
         self.listWidget.setObjectName("listWidget")
-        self.pushButton = QtWidgets.QPushButton(PersonelSil)
+        self.pushButton = QtWidgets.QPushButton(self)
         self.pushButton.setGeometry(QtCore.QRect(360, 160, 73, 23))
         self.pushButton.setObjectName("pushButton")
         self.personel_bul()
 
-        self.retranslateUi(PersonelSil)
+        self.retranslateUi()
         self.pushButton.clicked.connect(self.perisil)
         self.listWidget.itemDoubleClicked['QListWidgetItem*'].connect(self.perisil)
-        QtCore.QMetaObject.connectSlotsByName(PersonelSil)
+        QtCore.QMetaObject.connectSlotsByName(self)
 
     def personel_bul(self):
         sorgu = self.yaz.kolon_oku("ad", "personel")
@@ -49,23 +52,19 @@ class Ui_PersonelSil(object):
             self.yaz.kayit_sil("personel", "ad", self.listWidget.currentItem().text())
             self.listWidget.clear()
             self.personel_bul()
+            self.on_changed_value(1)
         else:
             pass
 
 
-    def retranslateUi(self, PersonelSil):
+    def retranslateUi(self):
         _translate = QtCore.QCoreApplication.translate
-        PersonelSil.setWindowTitle(_translate("PersonelSil", "Personel Sil"))
+        self.setWindowTitle(_translate("PersonelSil", "Personel Sil"))
         self.pushButton.setText(_translate("PersonelSil", "Sil"))
+
+    def on_changed_value(self, value):
+        self.signal.emit(value)
 
 import ic_rc
 
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    PersonelSil = QtWidgets.QDialog()
-    ui = Ui_PersonelSil()
-    ui.setupUi(PersonelSil)
-    PersonelSil.show()
-    sys.exit(app.exec_())
 

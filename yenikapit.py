@@ -12,6 +12,12 @@ import uiayar as ayar
 import tslmt
 from mesajlar import uyari, kart_kullanim_soru
 from urunekle import Ui_UrunEkle
+from yogunlukguncelle import Ui_YogunlukGuncelle
+from bolgeekle import Ui_BolgeEkle
+from yerekle import Ui_YerEkle
+from bolgesil import Ui_BolgeYerSil
+from personekle import Ui_PersonelEkle
+from personelsil import Ui_PersonelSil
 
 class Ui_MainWindow(object):
     #Sinyal Slot Bağla
@@ -20,6 +26,42 @@ class Ui_MainWindow(object):
         self.urun_ekle_connection(self.p)
         self.p.show()
         self.p.exec_()
+
+    def gui_yogun_guncelle(self):
+        self.pp = Ui_YogunlukGuncelle()
+        self.urun_ekle_connection(self.pp)
+        self.pp.show()
+        self.pp.exec_()
+
+    def gui_bolge_ekle(self):
+        self.ppp = Ui_BolgeEkle()
+        self.bolge_ekle_connection(self.ppp)
+        self.ppp.show()
+        self.ppp.exec_()
+
+    def gui_yer_ekle(self):
+        ppp = Ui_YerEkle()
+        self.bolge_ekle_connection(ppp)
+        ppp.show()
+        ppp.exec_()
+
+    def gui_yer_sil(self):
+        ppp = Ui_BolgeYerSil()
+        self.bolge_ekle_connection(ppp)
+        ppp.show()
+        ppp.exec_()
+
+    def gui_personel_ekle(self):
+        ppp = Ui_PersonelEkle()
+        self.personel_ekle_connection(ppp)
+        ppp.show()
+        ppp.exec_()
+
+    def gui_personel_sil(self):
+        ppp = Ui_PersonelSil()
+        self.personel_ekle_connection(ppp)
+        ppp.show()
+        ppp.exec_()
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -130,6 +172,7 @@ class Ui_MainWindow(object):
         self.gridLayout_2.addWidget(self.label_6, 12, 0, 1, 1)
         self.comboBox_6 = QtWidgets.QComboBox(self.widget)
         self.comboBox_6.setObjectName("comboBox_6")
+        self.comboBox_6.addItem("Teslimatçı Seç")
         self.gridLayout_2.addWidget(self.comboBox_6, 12, 1, 1, 2)
         self.label_28 = QtWidgets.QLabel(self.widget)
         self.label_28.setObjectName("label_28")
@@ -142,12 +185,14 @@ class Ui_MainWindow(object):
         self.gridLayout_2.addWidget(self.label_7, 14, 0, 1, 1)
         self.comboBox_7 = QtWidgets.QComboBox(self.widget)
         self.comboBox_7.setObjectName("comboBox_7")
+        self.comboBox_7.addItem("Gemici Seç")
         self.gridLayout_2.addWidget(self.comboBox_7, 14, 1, 1, 2)
         self.label_11 = QtWidgets.QLabel(self.widget)
         self.label_11.setObjectName("label_11")
         self.gridLayout_2.addWidget(self.label_11, 15, 0, 1, 1)
         self.comboBox_8 = QtWidgets.QComboBox(self.widget)
         self.comboBox_8.setObjectName("comboBox_8")
+        self.comboBox_8.addItem("Bölge Seç")
         self.gridLayout_2.addWidget(self.comboBox_8, 15, 1, 1, 2)
         self.comboBox_9 = QtWidgets.QComboBox(self.widget)
         self.comboBox_9.setObjectName("comboBox_9")
@@ -431,12 +476,12 @@ class Ui_MainWindow(object):
         self.actionGemi_Bilgisi_D_zenle.triggered.connect(ayar.Gduz)
         self.actionGemi_Sil.triggered.connect(ayar.Gsil)
 
-        self.action_r_n_D_zenle.triggered.connect(ayar.Ygun)
-        self.actionPersonel_Ekle_3.triggered.connect(ayar.Perekle)
-        self.actionPersonel_Sil_2.triggered.connect(ayar.Persil)
-        self.actionB_lge_Ekle.triggered.connect(ayar.bolekle)
-        self.actionYer_Ekle.triggered.connect(ayar.yerek)
-        self.actionB_lge_Yer_Bilgisi_Sil.triggered.connect(ayar.bysil)
+        self.action_r_n_D_zenle.triggered.connect(self.gui_yogun_guncelle)
+        self.actionPersonel_Ekle_3.triggered.connect(self.gui_personel_ekle)
+        self.actionPersonel_Sil_2.triggered.connect(self.gui_personel_sil)
+        self.actionB_lge_Ekle.triggered.connect(self.gui_bolge_ekle)
+        self.actionYer_Ekle.triggered.connect(self.gui_yer_ekle)
+        self.actionB_lge_Yer_Bilgisi_Sil.triggered.connect(self.gui_yer_sil)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         self.actionYeni_r_n_Ekle.triggered.connect(self.gui_urun_ekle)
         #-----------------------------------------------Bizim Tetiklemeler
@@ -621,7 +666,10 @@ class Ui_MainWindow(object):
 
     def yer_bul(self):
         self.comboBox_9.clear()
-        self.comboBox_9.addItems(tslmt.yer_hazirla(self.comboBox_8.currentText()))
+        if self.comboBox_8.currentIndex() == 0:
+            pass
+        else:
+            self.comboBox_9.addItems(tslmt.yer_hazirla(self.comboBox_8.currentText()))
 
     def olustur(self):
         """ Artık Veritabanına bilgileri eklemek için değişkenleri almaya başlamamız lazım  """
@@ -729,9 +777,6 @@ class Ui_MainWindow(object):
         for i in range(len(yakit_kilo)):
             toplam_kilo += yakit_kilo[i]
 
-        print("Toplam litre ", toplam_litre)
-        print("Toplam Kilogram", toplam_kilo)
-
     def triggerfinger(self):
         self.lineEdit.returnPressed.connect(self.tgemi)
         self.comboBox_3.currentIndexChanged.connect(self.tyogun)
@@ -743,10 +788,55 @@ class Ui_MainWindow(object):
     def urun_ekle_connection(self, urun_ekle_object):
         urun_ekle_object.clicked.connect(self.get_signal_urun_ekle)
 
+    def bolge_ekle_connection(self, signal_object):
+        signal_object.signal.connect(self.get_signal_bolge)
+
+    def personel_ekle_connection(self, signal_object):
+        signal_object.signal.connect(self.get_signal_personel)
+
     @QtCore.pyqtSlot(bool)
     def get_signal_urun_ekle(self, val):
         if val == True:
             self.urun_stok()
+        else:
+            pass
+
+    @QtCore.pyqtSlot(int)
+    def get_signal_bolge(self, val):
+        if val == 1:
+            say = self.comboBox_8.count()
+            sayac = say
+            for i in range(1, say + 1):
+                self.comboBox_8.removeItem(sayac)
+                sayac -= 1
+            self.comboBox_8.setCurrentIndex(0)
+            self.comboBox_8.addItems(tslmt.bolge_hazirla())
+        elif val == 2:
+            self.yer_bul()
+        else:
+            pass
+
+    @QtCore.pyqtSlot(int)
+    def get_signal_personel(self, val):
+        if val == 1:
+            #teslimatçıları ayarla
+            say = self.comboBox_6.count()
+            sayac = say
+            for i in range(1, say + 1):
+                self.comboBox_6.removeItem(sayac)
+                sayac -= 1
+            self.comboBox_6.setCurrentIndex(0)
+            self.comboBox_6.addItems(tslmt.personel_hazirla("0"))
+            #gemicileri ayarla
+            say = self.comboBox_7.count()
+            sayac = say
+            for i in range(1, say + 1):
+                self.comboBox_7.removeItem(sayac)
+                sayac -= 1
+            self.comboBox_7.setCurrentIndex(0)
+            self.comboBox_7.addItems(tslmt.personel_hazirla("1"))
+        elif val == 2:
+            self.yer_bul()
         else:
             pass
 
