@@ -8,7 +8,7 @@ from firmasil import Ui_Firmasil
 from gemiekle import Ui_GemiEkle
 from fg import Ui_Fg
 from gemisil import Ui_GemiSil
-from urunekle import Ui_UrunEkle
+
 from yogunlukguncelle import Ui_YogunlukGuncelle
 from personekle import Ui_PersonelEkle
 from personelsil import Ui_PersonelSil
@@ -16,6 +16,7 @@ from bolgeekle import Ui_BolgeEkle
 from bolgesil import Ui_BolgeYerSil
 from yerekle import Ui_YerEkle
 from karttutanak import Ui_KrediKari
+from urunekle import Ui_UrunEkle
 
 """
     Teslimat ui dosyasını signal slot bağlantıları
@@ -44,6 +45,14 @@ def Fguncelle(self):
     ui.setupUi(Firmaguncelle)
     Firmaguncelle.show()
     Firmaguncelle.exec_()
+
+
+def Uekle(self):
+    UrunEkle = QtWidgets.QDialog()
+    ui = Ui_UrunEkle()
+    ui.setupUi(UrunEkle)
+    UrunEkle.show()
+    UrunEkle.exec_()
 
 def Folustur(self):
     Firmaolustur = QtWidgets.QDialog()
@@ -79,13 +88,6 @@ def Gsil(self):
     ui.setupUi(GemiSil)
     GemiSil.show()
     GemiSil.exec_()
-
-def Uekle():
-    UrunEkle = QtWidgets.QDialog()
-    ui = Ui_UrunEkle()
-    ui.setupUi(UrunEkle)
-    UrunEkle.show()
-    UrunEkle.exec_()
 
 def Ygun():
     YogunlukGuncelle = QtWidgets.QDialog()

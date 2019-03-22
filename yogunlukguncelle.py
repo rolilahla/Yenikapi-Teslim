@@ -76,7 +76,7 @@ class Ui_YogunlukGuncelle(object):
                 str(sonuc[sayac + 2]) + "   -->  " + \
                 str(sonuc[sayac + 3]) + "   -->  " + \
                 str(sonuc[sayac + 4]) + "   -->  " + \
-                str(sonuc[sayac + 5])
+                str(sonuc[sayac + 5]) + "   -->  " + \
             self.listWidget.addItem(a)
             sayac += 8
 

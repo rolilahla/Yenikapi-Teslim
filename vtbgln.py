@@ -113,13 +113,13 @@ class VbagKur(object):
                 dizi.append(a[im])
         return dizi
 
-    def dolum_ekle(self, tarih, tur, lt, kg, kesafet):
+    def dolum_ekle(self, tarih, tur, lt, kg, kesafet, beyan):
         self.im.execute("""INSERT INTO densitys VALUES(null,
          '{}',
           '{}',
            '{}',
             '{}',
-            '{}', 0, 0)""".format(tarih, tur, lt, kg, kesafet))
+            '{}', 0, 0,{})""".format(tarih, tur, lt, kg, kesafet, beyan))
         self.vt.commit()
 
     def yogunluk_gun(self, tarih, tur, lt, kg, yog, id_no):

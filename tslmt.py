@@ -70,10 +70,8 @@ def v_c_f(density, brut, sicaklik):
         sonuc_liste.append(str(format(kilogram, '.3f')))
         return sonuc_liste
 
-
 def bolge_hazirla():
     return yaz.veri_duzenle(yaz.kolon_oku("ad", "bolge"))
-
 
 def yer_hazirla(argv):
     oku = yaz.veri_duzenle(yaz.hepsini_oku("kod", "bolge", "ad", argv))
@@ -84,7 +82,6 @@ def tek_sonuc_cek(ad, firmalar, kod, deger):
 
 def personel_hazirla(firma):
     return yaz.veri_duzenle(yaz.hepsini_oku("ad", "personel", "firma", firma))
-
 
 def teslimat_hazirliği_yap(danisman ,musteri_kodu ,gemi, yakit_turu, yogunluk,
 				   brut_litre, sicaklik , volum_correction, net_litre, kilogram,

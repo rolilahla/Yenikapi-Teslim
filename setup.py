@@ -4,7 +4,7 @@
 from cx_Freeze import setup, Executable
 
 target = Executable(
-    script="teslimat.py",
+    script="yenikapit.py",
     base="Win32GUI",
     compress=False,
     copyDependentFiles=True,

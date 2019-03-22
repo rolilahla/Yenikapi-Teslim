@@ -6,6 +6,7 @@
 #
 # WARNING! All changes made in this file will be lost!
 
+import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 import uiayar as ayar
 
@@ -419,7 +420,7 @@ class Ui_MainWindow(object):
         self.actionYeni_Gemi_Ekle.triggered.connect(ayar.Gekle)
         self.actionGemi_Bilgisi_D_zenle.triggered.connect(ayar.Gduz)
         self.actionGemi_Sil.triggered.connect(ayar.Gsil)
-        self.actionYeni_r_n_Ekle.triggered.connect(ayar.Uekle)
+
         self.action_r_n_D_zenle.triggered.connect(ayar.Ygun)
         self.actionPersonel_Ekle_3.triggered.connect(ayar.Perekle)
         self.actionPersonel_Sil_2.triggered.connect(ayar.Persil)
@@ -427,6 +428,7 @@ class Ui_MainWindow(object):
         self.actionYer_Ekle.triggered.connect(ayar.yerek)
         self.actionB_lge_Yer_Bilgisi_Sil.triggered.connect(ayar.bysil)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.actionYeni_r_n_Ekle.triggered.connect(ayar.Uekle)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate

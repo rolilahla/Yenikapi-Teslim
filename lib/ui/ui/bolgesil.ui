@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>BolgeYerSil</class>
+ <widget class="QDialog" name="BolgeYerSil">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>632</width>
+    <height>316</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Bölge Ve Yer Sil</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>:/rolix/docky.png</normaloff>:/rolix/docky.png</iconset>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>91</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="../icon/ic.qrc">:/rolix/scalable/package-remove.svg</pixmap>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QGroupBox" name="groupBox">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>80</y>
+     <width>300</width>
+     <height>225</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Bölge Listesi</string>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="0" column="0">
+     <widget class="QListWidget" name="listWidget"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_2">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>80</y>
+     <width>300</width>
+     <height>225</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Yer Listesi</string>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QListWidget" name="listWidget_2"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>10</y>
+     <width>511</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Veritabanından silmek istediğiniz Bölge veya Yer bilgisinin üzerine çift tıklayınız.</string>
+   </property>
+  </widget>
+ </widget>
+ <resources>
+  <include location="../icon/ic.qrc"/>
+ </resources>
+ <connections/>
+</ui>
